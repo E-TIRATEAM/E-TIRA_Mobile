@@ -1,4 +1,4 @@
 # E-TIRA_Mobile
 
 Aplikasi pemesanan tempat di Desa Wisata Tirta Agung
-Sukosari Kidul - Wonosari - Bondowoso
+Sokleh Timur, Sukosari Kidul - Kecamatan Sumber Wringin - Kabupaten Bondowoso, Jawa Timur 68287
