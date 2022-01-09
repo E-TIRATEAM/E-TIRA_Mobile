@@ -3,7 +3,7 @@ package com.rememberdev.tirtaagung.model;
 public class User {
 
     private int id;
-    private String nama_lengkap, nomor_hp, email_user, password_user;
+    private String nama_lengkap, nomor_hp, email_user, password_user, foto_profil, alamat;
 
     public int getId() {
         return id;
@@ -43,5 +43,21 @@ public class User {
 
     public void setPassword_user(String password_user) {
         this.password_user = password_user;
+    }
+
+    public String getFoto_profil() {
+        return foto_profil;
+    }
+
+    public void setFoto_profil(String foto_profile) {
+        this.foto_profil = foto_profile;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 }

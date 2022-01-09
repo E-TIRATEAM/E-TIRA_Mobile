@@ -106,9 +106,9 @@
                 android:drawablePadding="16dp"
                 />
 
-            <!-- Rectangle 3 -->
+            <!-- Rectangle 2 -->
             <View
-                android:id="@+id/rectangle_3"
+                android:id="@+id/rectangle_22"
                 android:layout_width="320dp"
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
@@ -122,6 +122,38 @@
                 app:layout_constraintTop_toBottomOf="@+id/edt_nomor_hp_register" />
 
             <EditText
+                android:id="@+id/edt_alamat_register"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:hint="alamat"
+                android:textSize="18sp"
+                android:textAlignment="viewStart"
+                android:background="@color/transparan"
+                app:layout_constraintEnd_toEndOf="@+id/logo"
+                app:layout_constraintStart_toStartOf="@+id/logo"
+                app:layout_constraintTop_toBottomOf="@+id/edt_nomor_hp_register"
+                android:drawableLeft="@drawable/ic_round_home_24"
+                android:drawablePadding="16dp"
+                />
+
+            <!-- Rectangle 3 -->
+            <View
+                android:id="@+id/rectangle_3"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/rectangle_1"
+                android:elevation="4dp"
+                app:layout_constraintEnd_toEndOf="@+id/logo"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="@+id/logo"
+                app:layout_constraintTop_toBottomOf="@+id/edt_alamat_register" />
+
+            <EditText
                 android:id="@+id/edt_email_register"
                 android:layout_width="280dp"
                 android:layout_height="50dp"
@@ -133,7 +165,7 @@
                 android:background="@color/transparan"
                 app:layout_constraintEnd_toEndOf="@+id/logo"
                 app:layout_constraintStart_toStartOf="@+id/logo"
-                app:layout_constraintTop_toBottomOf="@+id/edt_nomor_hp_register"
+                app:layout_constraintTop_toBottomOf="@+id/edt_alamat_register"
                 android:drawableLeft="@drawable/ic_user"
                 android:drawablePadding="16dp"
                 />
@@ -278,7 +310,7 @@
                 android:layout_alignParentTop="true"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/login"
-                android:textColor="#062993"
+                android:textColor="@color/hijau_tua_tirta"
                 android:textAppearance="@style/forgot_pass_and_register"
                 app:layout_constraintEnd_toEndOf="@+id/edt_confirm_password_register"
                 app:layout_constraintStart_toStartOf="@+id/edt_confirm_password_register"

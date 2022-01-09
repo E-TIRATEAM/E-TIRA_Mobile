@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activity.KonfirmasiPemesananActivity">
+
+    <TextView
+        android:id="@+id/txt_pemesan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Pesanan atas nama :"
+        android:textColor="@color/primary_label"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_nama_lengkap"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Nama Lengkap"
+        android:textColor="@color/secondary_label"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txt_pemesan"
+        app:layout_constraintTop_toBottomOf="@+id/txt_pemesan" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/txt_nomor_hp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:fontFamily="@font/mulish_regular"-->
+<!--        android:text="Telp/WA : 089515295079"-->
+<!--        android:textColor="@color/secondary_label"-->
+<!--        android:textSize="16sp"-->
+<!--        app:layout_constraintStart_toStartOf="@+id/txt_nama_lengkap"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/txt_nama_lengkap" />-->
+
+    <TextView
+        android:id="@+id/txt_detail_full"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Berikut detail pemesanan Anda :"
+        android:textColor="@color/primary_label"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/txt_nama_lengkap"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txt_nama_lengkap"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nama_lengkap" />
+
+    <TextView
+        android:id="@+id/txt_judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Judul"
+        android:textSize="16sp"
+        android:textColor="@color/secondary_label"
+        android:fontFamily="@font/mulish_regular"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_detail_full" />
+
+    <TextView
+        android:id="@+id/txt_fasilitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fasilitas"
+        android:textSize="16sp"
+        android:textColor="@color/secondary_label"
+        android:fontFamily="@font/mulish_regular"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/txt_judul"
+        app:layout_constraintTop_toBottomOf="@+id/txt_judul" />
+
+    <TextView
+        android:id="@+id/txt_lama_dan_kapasitas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Lama dan Kapasitas"
+        android:textColor="@color/secondary_label"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/txt_fasilitas"
+        app:layout_constraintTop_toBottomOf="@+id/txt_fasilitas" />
+
+    <TextView
+        android:id="@+id/txt_harga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Harga"
+        android:textColor="@color/secondary_label"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/txt_lama_dan_kapasitas"
+        app:layout_constraintTop_toBottomOf="@+id/txt_lama_dan_kapasitas" />
+
+    <TextView
+        android:id="@+id/txt_judul_jadwal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Pilih Tanggal Pemesanan :"
+        android:textColor="@color/primary_label"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/txt_nama_lengkap"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/txt_harga"
+        app:layout_constraintTop_toBottomOf="@+id/txt_harga" />
+
+    <EditText
+        android:id="@+id/edt_tanggal_pick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:fontFamily="@font/mulish_regular"
+        android:hint="Pilih tanggal"
+        app:layout_constraintEnd_toEndOf="@+id/txt_judul_jadwal"
+        app:layout_constraintStart_toStartOf="@+id/txt_judul_jadwal"
+        app:layout_constraintTop_toBottomOf="@+id/txt_judul_jadwal" />
+
+    <TextView
+        android:id="@+id/txt_judul_metode_pembayaran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Pilih Metode Pembayaran :"
+        android:textColor="@color/primary_label"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/txt_nama_lengkap"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/edt_tanggal_pick"
+        app:layout_constraintTop_toBottomOf="@+id/edt_tanggal_pick" />
+
+    <Spinner
+        android:id="@+id/listSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:outlineSpotShadowColor="@color/secondary_label"
+        android:backgroundTintMode="screen"
+        android:backgroundTint="@color/secondary_label"
+        app:layout_constraintEnd_toEndOf="@+id/txt_judul_metode_pembayaran"
+        app:layout_constraintStart_toStartOf="@+id/txt_judul_metode_pembayaran"
+        app:layout_constraintTop_toBottomOf="@+id/txt_judul_metode_pembayaran" />
+
+    <Button
+        android:id="@+id/btn_proses_pemesanan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_pesan"
+        android:text="Proses Pemesanan"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

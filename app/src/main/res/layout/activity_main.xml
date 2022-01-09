@@ -60,16 +60,16 @@
 
             <Button
                 android:id="@+id/btn_logout"
-                android:onClick="actionLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Logout"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:background="#F11919"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="200dp"/>
+                android:layout_marginTop="200dp"
+                android:background="#F11919"
+                android:onClick="actionLogout"
+                android:text="Logout"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>

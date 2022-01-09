@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_const"
+    tools:context=".activity.DetailPaketActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/bg_const">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:title="Tirta Agung"
+            app:expandedTitleTextAppearance="@style/Theme.TirtaAgung"
+            app:collapsedTitleTextAppearance="@style/Theme.TirtaAgung"
+            android:id="@+id/collapsing_toolbar">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img_detail1"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_tirta1"
+                app:layout_anchor="@+id/appBarLayout"
+                app:layout_anchorGravity="center"
+                app:riv_corner_radius_bottom_left="120dp"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/img_detail11"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_tirta1"
+        app:riv_corner_radius_bottom_left="120dp"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_layout"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linear"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/txt_judul"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Judul"
+                    android:textColor="@color/primary_label"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/mulish_regular"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/txt_lokasi"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Sukosari, Bondowoso"
+                    android:textColor="@color/secondary_label"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/mulish_regular" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Galeri"
+                    android:textColor="@color/primary_label"
+                    android:layout_marginTop="16sp"
+                    android:textSize="18sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp">
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_detail2"
+                        android:layout_width="100dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/img_tirta1"
+                        app:riv_corner_radius="10dp"
+                        android:layout_marginRight="10dp"
+                        android:scaleType="centerCrop"/>
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_detail3"
+                        android:layout_width="100dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/img_tirta1"
+                        app:riv_corner_radius="10dp"
+                        android:scaleType="centerCrop"/>
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/img_detail4"
+                        android:layout_width="100dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/img_tirta1"
+                        app:riv_corner_radius="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:scaleType="centerCrop"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Deskripsi"
+                    android:textColor="@color/primary_label"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/mulish_regular"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/txt_deskripsi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Deskripsi detail paket"
+                    android:textColor="@color/secondary_label"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/mulish_regular"
+                    android:layout_marginTop="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Fasilitas"
+                    android:textColor="@color/primary_label"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/mulish_regular"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:id="@+id/txt_fasilitas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Fasilitas yang di dapatkan"
+                    android:textColor="@color/secondary_label"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/mulish_regular"
+                    android:layout_marginTop="6dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linear"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:gravity="start"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="130dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txt_harga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/mulish_regular"
+                            android:text="Rp. 400.000"
+                            android:textColor="@color/primary_label"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txt_lama_dan_kapasitas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/mulish_regular"
+                            android:text="1 hari 5 orang"
+                            android:textColor="@color/secondary_label"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:gravity="end|center_vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <Button
+                            android:id="@+id/btn_pesan"
+                            android:onClick="actionPesan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_button_pesan"
+                            android:fontFamily="@font/mulish_regular"
+                            android:text="Pesan Sekarang"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

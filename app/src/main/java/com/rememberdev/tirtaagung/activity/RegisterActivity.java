@@ -33,10 +33,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private int flagExit = 0;
     private ImageButton imgViewHidePassword, imgViewHideConfirmPassword;
-    private EditText edtPasswordRegister, edtConfirmPasswordRegister, edtNamaLengkapRegister, edtNomorHPRegister, edtEmailRegister;
+    private EditText edtPasswordRegister, edtConfirmPasswordRegister, edtNamaLengkapRegister, edtNomorHPRegister, edtEmailRegister, edtAlamatRegister;
 
     private String typeConn = "";
     private final String TAG = getClass().getSimpleName();
+
+    final String foto_profil = "user.png";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
         edtNamaLengkapRegister = findViewById(R.id.edt_nama_lengkap_register);
         edtNomorHPRegister = findViewById(R.id.edt_nomor_hp_register);
         edtEmailRegister = findViewById(R.id.edt_email_register);
+        edtAlamatRegister = findViewById(R.id.edt_alamat_register);
 
 //        Bundle extras = getIntent().getExtras();
 //        if (extras != null) {
@@ -95,6 +98,14 @@ public class RegisterActivity extends AppCompatActivity {
             isInputValid = true;
         }
 
+        if (edtAlamatRegister.getText().toString().isEmpty()) {
+            edtAlamatRegister.setError("Tidak boleh kosong!");
+            edtAlamatRegister.requestFocus();
+            isInputValid = false;
+        } else {
+            isInputValid = true;
+        }
+
         if (edtEmailRegister.getText().toString().isEmpty()) {
             edtEmailRegister.setError("Tidak boleh kosong!");
             edtEmailRegister.requestFocus();
@@ -120,7 +131,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if (edtConfirmPasswordRegister.getText().toString().equalsIgnoreCase(edtPasswordRegister.getText().toString())) {
-            isInputValid = true;
         } else {
             new AlertDialog.Builder(RegisterActivity.this)
                     .setTitle("Peringatan!")
@@ -140,6 +150,8 @@ public class RegisterActivity extends AppCompatActivity {
             user.setNomor_hp(edtNomorHPRegister.getText().toString());
             user.setEmail_user(edtEmailRegister.getText().toString());
             user.setPassword_user(edtPasswordRegister.getText().toString());
+            user.setFoto_profil(foto_profil.toString());
+            user.setAlamat(edtAlamatRegister.getText().toString());
 
             registerUsingRetrofit(user);
         }

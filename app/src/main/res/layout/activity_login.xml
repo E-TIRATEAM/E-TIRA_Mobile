@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/back_grey"
+    android:background="@color/white"
     tools:context=".activity.LoginActivity">
     <ScrollView
         android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                 android:layout_alignParentTop="true"
                 android:gravity="center_horizontal|center_vertical"
                 android:text="@string/register_now"
-                android:textColor="#062993"
+                android:textColor="@color/hijau_tua_tirta"
                 android:textAppearance="@style/forgot_pass_and_register"
                 app:layout_constraintEnd_toEndOf="@+id/forgot_pass"
                 app:layout_constraintStart_toStartOf="@+id/forgot_pass"

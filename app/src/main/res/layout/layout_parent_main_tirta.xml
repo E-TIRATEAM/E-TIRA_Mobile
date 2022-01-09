@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_const">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/bg_const">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:contentScrim="@color/hijau_tua_tirta"
+                app:expandedTitleTextAppearance="@style/Theme.TirtaAgung"
+                app:collapsedTitleTextAppearance="@style/Theme.TirtaAgung"
+                android:id="@+id/collapsing_toolbar">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_tirta1"
+                    app:layout_anchor="@+id/appBarLayout"
+                    app:layout_anchorGravity="center"
+                    app:riv_corner_radius_bottom_left="130dp"/>
+
+<!--                <androidx.appcompat.widget.Toolbar-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="?attr/actionBarSize"-->
+<!--                    app:layout_scrollFlags="scroll|enterAlways"-->
+<!--                    app:layout_collapseMode="pin" />-->
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:scaleType="centerCrop"
+        android:src="@drawable/img_tirta1"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:riv_corner_radius_bottom_left="130dp"/>
+
+    <View
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_transparan_30"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Nikmati Liburanmu di Wisata Tirta Agung"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/mulish_regular"
+        android:text="Abadikan moment indah bersama keluarga dan kerabat anda disini, nikmati kuliner dan suasana pedesaan yang asri"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:textAlignment="center"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingTop="20dp"
+        android:background="@drawable/bg_layout"
+        android:scrollbarFadeDuration="@integer/material_motion_duration_long_2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_auto_slide_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    app:layout_constraintStart_toStartOf="@id/constraint"
+                    app:layout_constraintTop_toTopOf="@id/constraint"
+                    app:layout_constraintEnd_toEndOf="@id/constraint"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

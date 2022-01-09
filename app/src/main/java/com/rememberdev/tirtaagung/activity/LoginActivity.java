@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.rememberdev.tirtaagung.MainActivity;
 import com.rememberdev.tirtaagung.R;
 import com.rememberdev.tirtaagung.global.GlobalVariabel;
+import com.rememberdev.tirtaagung.global.UsernameToFragment;
 import com.rememberdev.tirtaagung.model.User;
 import com.rememberdev.tirtaagung.model.UserResponse;
 import com.rememberdev.tirtaagung.retrofit.MethodHTTP;
@@ -46,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         //cek session
         sp = getSharedPreferences("login_session", MODE_PRIVATE);
         if (sp.getString("username", null) != null) {
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            startActivity(new Intent(LoginActivity.this, MainTirtaActivity.class));
         }
 
         imgButtonViewHidePassword = findViewById(R.id.img_btn_view_hide_password);
@@ -128,11 +129,8 @@ public class LoginActivity extends AppCompatActivity {
         proDialog.setMessage("Silahkan tunggu");
         proDialog.show();
 
-        GlobalVariabel globalVariabel = new GlobalVariabel();
-        String globalUrlServer = globalVariabel.getGlobalUrlServer();
-
         Retrofit.Builder builder =  new Retrofit.Builder()
-                .baseUrl(globalUrlServer)
+                .baseUrl(GlobalVariabel.getGlobalUrlServer())
                 .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = builder.build();
@@ -151,10 +149,20 @@ public class LoginActivity extends AppCompatActivity {
                                 .edit()
                                 .putString("username", loggedUser.getEmail_user())
                                 .putString("nama_lengkap", loggedUser.getNama_lengkap())
+                                .putString("foto_profil", loggedUser.getFoto_profil())
+                                .putString("nomor_hp", loggedUser.getNomor_hp())
+                                .putString("alamat", loggedUser.getAlamat())
                                 .apply();
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
+                        UsernameToFragment.setUsername(loggedUser.getNama_lengkap());
+                        UsernameToFragment.setNomorHP(loggedUser.getNomor_hp());
+                        if (loggedUser.getEmail_user().toString().equalsIgnoreCase("admin@admin.com")) {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, MainTirtaActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     } else if (response.body().getCode() == 401) {
                         new AlertDialog.Builder(LoginActivity.this)
                                 .setTitle("Peringatan!")

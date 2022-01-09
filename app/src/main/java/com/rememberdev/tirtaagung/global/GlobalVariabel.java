@@ -2,13 +2,20 @@ package com.rememberdev.tirtaagung.global;
 
 public class GlobalVariabel {
 
-    private String globalUrlServer = "http://192.168.0.6";
+    /**localhost / XAMPP*/
+//    private static String globalUrlServer = "http://192.168.43.114/tirtaagung/";
 
-    public String getGlobalUrlServer() {
+    /**Hosting WS-TIF*/
+    private static String globalUrlServer = "https://ws-tif.com/tirta-agung/rest-api/";
+
+//    private static String globalUrlServer = "http://wisatatirtaagung.unaux.com/";
+//    private static String globalUrlServer = "https://reciprocal-opposite.000webhostapp.com/tirtaagung/";
+
+    public static String getGlobalUrlServer() {
         return globalUrlServer;
     }
 
-    public void setGlobalUrlServer(String globalUrlServer) {
-        this.globalUrlServer = globalUrlServer;
+    public static void setGlobalUrlServer(String globalUrlServer) {
+        GlobalVariabel.globalUrlServer = globalUrlServer;
     }
 }

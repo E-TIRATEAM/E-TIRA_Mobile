@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ProfileActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_profil"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="16dp"
+        android:elevation="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/img_profil"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/ic_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/constraint1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_judul_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email / Username"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/ic_username"/>
+
+        <TextView
+            android:id="@+id/txt_username_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="UsernameKu adalah ---"
+            app:layout_constraintStart_toStartOf="@id/txt_judul_username"
+            app:layout_constraintTop_toBottomOf="@id/txt_judul_username" />\
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:background="@color/secondary_label"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/txt_username_profil"
+            app:layout_constraintTop_toBottomOf="@id/txt_username_profil"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraint1"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/ic_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/constraint2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_judul_nama"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/ic_nama"/>
+
+        <TextView
+            android:id="@+id/txt_nama_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="namaku adalah ---"
+            app:layout_constraintStart_toStartOf="@id/txt_judul_nama"
+            app:layout_constraintTop_toBottomOf="@id/txt_judul_nama" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:background="@color/secondary_label"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/txt_nama_profil"
+            app:layout_constraintTop_toBottomOf="@id/txt_nama_profil"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraint2"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/ic_alamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/constraint3"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_judul_alamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/ic_alamat"/>
+
+        <TextView
+            android:id="@+id/txt_alamat_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="alamatku di ---"
+            app:layout_constraintStart_toStartOf="@id/txt_judul_alamat"
+            app:layout_constraintTop_toBottomOf="@id/txt_judul_alamat" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:background="@color/secondary_label"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/txt_alamat_profil"
+            app:layout_constraintTop_toBottomOf="@id/txt_alamat_profil"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraint3"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/ic_telpon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_phone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/constraint4"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_judul_telpon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No HP / WhatsApp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/ic_telpon"/>
+
+        <TextView
+            android:id="@+id/txt_telpon_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="No Hp Ku adalah ---"
+            app:layout_constraintStart_toStartOf="@id/txt_judul_telpon"
+            app:layout_constraintTop_toBottomOf="@id/txt_judul_telpon" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:background="@color/secondary_label"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/txt_telpon_profil"
+            app:layout_constraintTop_toBottomOf="@id/txt_telpon_profil"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/constraint4"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/ic_passwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_lock"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/constraint5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt_judul_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@id/ic_passwd"/>
+
+        <TextView
+            android:id="@+id/txt_passwd_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="AlamatKu di ---"
+            android:inputType="textPassword"
+            app:layout_constraintStart_toStartOf="@id/txt_judul_password"
+            app:layout_constraintTop_toBottomOf="@id/txt_judul_password" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="2px"
+            android:background="@color/secondary_label"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@id/txt_passwd_profil"
+            app:layout_constraintTop_toBottomOf="@id/txt_passwd_profil"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:background="#F11919"
+        android:onClick="actionLogout"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/nav_bottom_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_bottom_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:itemIconTint="@color/hijau_tirta"
+        app:itemTextColor="@color/hijau_tua_tirta"
+        app:menu="@menu/bottom_nav_menu"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
