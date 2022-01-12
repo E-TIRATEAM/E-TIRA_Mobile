@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,17 +49,14 @@ public class ChartActivity extends AppCompatActivity {
     private SharedPreferences sp;
 
     BottomNavigationView bottomNavigationView;
-
-//    private EditText editText;
-    private TextView tvTampil;
-    private Button btnTampil;
-
     String emailUser, namaLengkap;
 
     private RecyclerView rvDataPemesananUser;
     private RecyclerView.Adapter adDataPemesananUser;
     private RecyclerView.LayoutManager lmDataPemesananUser;
     private List<PemesananUser> listPemesananUser = new ArrayList<>();
+    SwipeRefreshLayout swipeRefreshLayout;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +68,20 @@ public class ChartActivity extends AppCompatActivity {
         emailUser = sp.getString("username", null);
         namaLengkap = sp.getString("nama_lengkap", null);
 
-        TextView txtNamaLengkap = findViewById(R.id.txt_nama_lengkap_pemesanan);
-        txtNamaLengkap.setText(namaLengkap + " | " + emailUser);
-
+        swipeRefreshLayout = findViewById(R.id.swl_data);
+        progressBar = findViewById(R.id.pb_data);
         rvDataPemesananUser = findViewById(R.id.rv_pemesanan);
         lmDataPemesananUser = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         rvDataPemesananUser.setLayoutManager(lmDataPemesananUser);
-        viewDataPemesananUser();
+        rvDataPemesananUser.setHasFixedSize(true);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                viewDataPemesananUser();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.nav_bottom_view);
         //Set Selected
@@ -103,7 +111,14 @@ public class ChartActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewDataPemesananUser();
+    }
+
     private void viewDataPemesananUser() {
+        progressBar.setVisibility(View.VISIBLE);
         MethodHTTP client = RetroServer.konekRetrofit().create(MethodHTTP.class);
         Call<ResponsePemesananUser> tampilListPemesananUser = client.ambilSpesifikPemesanan(emailUser);
 
@@ -119,12 +134,33 @@ public class ChartActivity extends AppCompatActivity {
                 adDataPemesananUser = new AdapterPemesananUser(ChartActivity.this, listPemesananUser);
                 rvDataPemesananUser.setAdapter(adDataPemesananUser);
                 adDataPemesananUser.notifyDataSetChanged();
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onFailure(Call<ResponsePemesananUser> call, Throwable t) {
                 Toast.makeText(ChartActivity.this, "gagal Menghubungi Server", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(ChartActivity.this)
+                .setTitle("Peringatan!")
+                .setMessage("tekan OK untuk menutup aplikasi!")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finishAffinity();
+                    }
+                })
+                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
     }
 }

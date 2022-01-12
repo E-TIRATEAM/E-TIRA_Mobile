@@ -1,6 +1,8 @@
 package com.rememberdev.tirtaagung.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -8,12 +10,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.rememberdev.tirtaagung.R;
+import com.rememberdev.tirtaagung.activity.DetailPaketActivity;
+import com.rememberdev.tirtaagung.activity.DetailPemesananTerkonfirmasiActivity;
+import com.rememberdev.tirtaagung.activity.KonfirmasiPemesananActivity;
+import com.rememberdev.tirtaagung.activity.ProfileActivity;
 import com.rememberdev.tirtaagung.global.GlobalVariabel;
 import com.rememberdev.tirtaagung.model.DaftarGambar;
 import com.rememberdev.tirtaagung.model.Pemesanan;
@@ -45,6 +52,7 @@ public class AdapterPemesananUser extends RecyclerView.Adapter<AdapterPemesananU
         Glide.with(holder.itemView.getContext())
                 .load("" + GlobalVariabel.getGlobalUrlServer() + "images/" + daftarPemesanan.getGambar_satu())
                 .centerCrop()
+                .optionalCenterCrop()
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.imgPemesanan);
         holder.tvJudul.setText(daftarPemesanan.getJudul());
@@ -57,22 +65,73 @@ public class AdapterPemesananUser extends RecyclerView.Adapter<AdapterPemesananU
             @Override
             public void onClick(View view) {
                 String messageStr =
-                        daftarPemesanan.getNama_lengkap() + "\n" +
-                        daftarPemesanan.getJudul() + "\n" +
-                        daftarPemesanan.getHarga();
-                String urlNew = "https://api.whatsapp.com/send?phone="+"+6289619713034"+"&text="+messageStr;
-                String url = "https://api.whatsapp.com/send?phone="+"+6289619713034";
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.putExtra(Intent.EXTRA_TEXT, "This is my text to send.");
-                i.setData(Uri.parse(urlNew));
-                ctx.startActivity(i);
+                        "Konfirmasi pesanan atas nama :" + "\n" +
+                        "*"+daftarPemesanan.getNama_lengkap()+"*" + "\n \n" +
+                        "Detail pesanan :" + "\n" +
+                        "~ "+daftarPemesanan.getNo_paket() + " " + daftarPemesanan.getJudul() + "\n" +
+                        "~ "+daftarPemesanan.getLama_sewa() + " hari | " + daftarPemesanan.getKapasitas() + " orang \n" +
+                        "~ "+daftarPemesanan.getFasilitas() + "\n" +
+                        "~ "+daftarPemesanan.getTanggal_pemesanan() + "\n" +
+                        "~ Rp."+daftarPemesanan.getHarga() + "\n \n" +
+                        "Metode Pembayaran :" + "\n" +
+                        "*"+daftarPemesanan.getMetode_pembayaran()+"*";
+                String urlNew = "https://api.whatsapp.com/send?phone="+"+6282338906182"+"&text="+messageStr;
+                if (daftarPemesanan.getStatus_pemesanan().equalsIgnoreCase("Belum Terkonfirmasi")){
+                    new AlertDialog.Builder(ctx)
+                            .setTitle("Pesan")
+                            .setMessage("Pesanan " + daftarPemesanan.getStatus_pemesanan() + ", lanjut konfirmasi?")
+                            .setPositiveButton("Lanjut", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(ctx, "konfirmasi", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                                    intent.setData(Uri.parse(urlNew));
+                                    ctx.startActivity(intent);
+                                    dialogInterface.dismiss();
+                                }
+                            })
+                            .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            })
+                            .show();
+                } else {
+                    new AlertDialog.Builder(ctx)
+                            .setTitle("Pesan")
+                            .setMessage("Pesanan ini telah " + daftarPemesanan.getStatus_pemesanan())
+                            .setPositiveButton("Lihat detail", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(ctx, DetailPemesananTerkonfirmasiActivity.class);
+                                    intent.putExtra("nama_lengkap", daftarPemesanan.getNama_lengkap());
+                                    intent.putExtra("judul", daftarPemesanan.getJudul());
+                                    intent.putExtra("harga", daftarPemesanan.getHarga());
+                                    intent.putExtra("lama_sewa", daftarPemesanan.getLama_sewa());
+                                    intent.putExtra("kapasitas", daftarPemesanan.getKapasitas());
+                                    intent.putExtra("fasilitas", daftarPemesanan.getFasilitas());
+                                    intent.putExtra("tanggal_pemesanan", daftarPemesanan.getTanggal_pemesanan());
+                                    intent.putExtra("metode_pembayaran", daftarPemesanan.getMetode_pembayaran());
+                                    intent.putExtra("status_pemesanan", daftarPemesanan.getStatus_pemesanan());
+                                    ctx.startActivity(intent);
+                                    dialogInterface.dismiss();
+                                }
+                            })
+                            .show();
+                    }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return listPemesanan.size();
+//        return listPemesanan.size();
+        if (listPemesanan == null) {
+            return 0;
+        } else {
+            return listPemesanan.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

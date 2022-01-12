@@ -9,13 +9,14 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_profil"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:layout_marginTop="16dp"
         android:elevation="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint1"
@@ -78,9 +79,9 @@
 
         <ImageView
             android:id="@+id/ic_nama"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_user"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_user_profil_baru"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/constraint2"
             app:layout_constraintTop_toTopOf="parent" />
@@ -101,6 +102,16 @@
             android:text="namaku adalah ---"
             app:layout_constraintStart_toStartOf="@id/txt_judul_nama"
             app:layout_constraintTop_toBottomOf="@id/txt_judul_nama" />
+
+        <ImageView
+            android:onClick="editNamaLengkap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@id/constraint2"
+            app:layout_constraintTop_toTopOf="@id/constraint2"
+            app:layout_constraintBottom_toBottomOf="@id/constraint2"/>
 
         <View
             android:layout_width="0dp"
@@ -126,7 +137,7 @@
             android:id="@+id/ic_alamat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_user"
+            android:src="@drawable/ic_round_home_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/constraint3"
             app:layout_constraintTop_toTopOf="parent" />
@@ -147,6 +158,16 @@
             android:text="alamatku di ---"
             app:layout_constraintStart_toStartOf="@id/txt_judul_alamat"
             app:layout_constraintTop_toBottomOf="@id/txt_judul_alamat" />
+
+        <ImageView
+            android:onClick="editAlamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@id/constraint3"
+            app:layout_constraintTop_toTopOf="@id/constraint3"
+            app:layout_constraintBottom_toBottomOf="@id/constraint3"/>
 
         <View
             android:layout_width="0dp"
@@ -193,6 +214,16 @@
             android:text="No Hp Ku adalah ---"
             app:layout_constraintStart_toStartOf="@id/txt_judul_telpon"
             app:layout_constraintTop_toBottomOf="@id/txt_judul_telpon" />
+
+        <ImageView
+            android:onClick="editNomorHp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@id/constraint4"
+            app:layout_constraintTop_toTopOf="@id/constraint4"
+            app:layout_constraintBottom_toBottomOf="@id/constraint4"/>
 
         <View
             android:layout_width="0dp"
@@ -242,6 +273,16 @@
             app:layout_constraintStart_toStartOf="@id/txt_judul_password"
             app:layout_constraintTop_toBottomOf="@id/txt_judul_password" />
 
+        <ImageView
+            android:onClick="editPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toEndOf="@id/constraint5"
+            app:layout_constraintTop_toTopOf="@id/constraint5"
+            app:layout_constraintBottom_toBottomOf="@id/constraint5"/>
+
         <View
             android:layout_width="0dp"
             android:layout_height="2px"
@@ -251,22 +292,6 @@
             app:layout_constraintTop_toBottomOf="@id/txt_passwd_profil"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <Button
-        android:id="@+id/btn_logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"
-        android:background="#F11919"
-        android:onClick="actionLogout"
-        android:text="Logout"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_bottom_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bottom_view"

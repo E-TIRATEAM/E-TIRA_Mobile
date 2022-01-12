@@ -6,6 +6,7 @@ import com.rememberdev.tirtaagung.model.FasilitasResponse;
 import com.rememberdev.tirtaagung.model.Request;
 import com.rememberdev.tirtaagung.model.ResponseModel;
 import com.rememberdev.tirtaagung.model.ResponsePemesananUser;
+import com.rememberdev.tirtaagung.model.ResponseUpdateUser;
 import com.rememberdev.tirtaagung.model.ResponseUser;
 import com.rememberdev.tirtaagung.model.User;
 import com.rememberdev.tirtaagung.model.UserResponse;
@@ -64,6 +65,19 @@ public interface MethodHTTP {
     @POST("Get_Spesifik_User_byUsername.php")
     Call<ResponseUser> ambilSpesifikUser(
             @Field("email_user") String emailUser
+    );
+
+    //Update User
+    @FormUrlEncoded
+    @POST("Update_User.php")
+    Call<ResponseUpdateUser> ardUpdateDataUser(
+            @Field("id") int id,
+            @Field("nama_lengkap") String nama_lengkap,
+            @Field("nomor_hp") String nomor_hp,
+            @Field("email_user") String email_user,
+            @Field("password_user") String password_user,
+            @Field("foto_profil") String foto_profil,
+            @Field("alamat") String alamat
     );
 
     //getSpesifikPemesanan

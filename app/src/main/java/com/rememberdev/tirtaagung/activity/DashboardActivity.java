@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.opengl.GLES10;
 import android.os.Bundle;
@@ -226,5 +228,24 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         sliderHandler.postDelayed(sliderRunnable, 3000);
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(DashboardActivity.this)
+                .setTitle("Peringatan!")
+                .setMessage("tekan OK untuk menutup aplikasi!")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finishAffinity();
+                    }
+                })
+                .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
     }
 }

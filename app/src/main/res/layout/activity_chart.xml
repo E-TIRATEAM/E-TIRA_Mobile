@@ -9,30 +9,32 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="4dp"
         app:layout_constraintBottom_toTopOf="@id/nav_bottom_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_pemesanan"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swl_data"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="4dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_pemesanan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_pemesanan_user" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <ProgressBar
+            android:id="@+id/pb_data"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_pemesanan_user"/>
+            android:layout_centerInParent="true"
+            android:visibility="invisible"/>
 
     </RelativeLayout>
-
-    <TextView
-        android:id="@+id/txt_nama_lengkap_pemesanan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Nama Lengkap"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@id/nav_bottom_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_bottom_view"

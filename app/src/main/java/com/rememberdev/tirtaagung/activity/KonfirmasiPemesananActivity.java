@@ -21,12 +21,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.rememberdev.tirtaagung.R;
 import com.rememberdev.tirtaagung.global.GlobalVariabel;
 import com.rememberdev.tirtaagung.global.UsernameToFragment;
+import com.rememberdev.tirtaagung.model.DataModel;
 import com.rememberdev.tirtaagung.model.Pemesanan;
 import com.rememberdev.tirtaagung.model.Request;
 import com.rememberdev.tirtaagung.model.ResponseModel;
+import com.rememberdev.tirtaagung.model.ResponseUser;
 import com.rememberdev.tirtaagung.model.User;
 import com.rememberdev.tirtaagung.retrofit.MethodHTTP;
 import com.rememberdev.tirtaagung.retrofit.RetroServer;
@@ -34,6 +37,7 @@ import com.rememberdev.tirtaagung.retrofit.RetroServer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import retrofit2.Call;
@@ -59,6 +63,8 @@ public class KonfirmasiPemesananActivity extends AppCompatActivity {
     final Calendar calendar = Calendar.getInstance();
     EditText editText;
 
+    private List<DataModel> listUser;
+
     TextView txtNamaLengkap, txtNoHP, txtJudul, txtFasilitas, txtLamaKapasitas, txtHarga;
     Button btnProsesPemesanan;
 
@@ -67,6 +73,7 @@ public class KonfirmasiPemesananActivity extends AppCompatActivity {
     String selectedMetode;
     final String statusPemesanan = "Belum Terkonfirmasi";
 
+    String varNamaLengkap;
     String emailUser, namaLengkap, id_paket, judul, harga, lama_sewa, kapasitas, fasilitas, tanggal_pemesanan, gambar_satu;
 
     @Override
@@ -77,7 +84,9 @@ public class KonfirmasiPemesananActivity extends AppCompatActivity {
         //cek session
         sp = getSharedPreferences("login_session", MODE_PRIVATE);
         emailUser = sp.getString("username", null);
-        namaLengkap = sp.getString("nama_lengkap", null);
+//        namaLengkap = sp.getString("nama_lengkap", null);
+
+        getSpesifikUser();
 
         Intent intent = getIntent();
 
@@ -96,8 +105,7 @@ public class KonfirmasiPemesananActivity extends AppCompatActivity {
         txtHarga = findViewById(R.id.txt_harga);
         btnProsesPemesanan = findViewById(R.id.btn_proses_pemesanan);
 
-        txtNamaLengkap.setText(namaLengkap);
-        txtJudul.setText(judul + " " + gambar_satu);
+        txtJudul.setText(judul);
         txtFasilitas.setText(fasilitas);
         txtLamaKapasitas.setText(lama_sewa + " hari  |  " + kapasitas + " orang");
         txtHarga.setText(harga);
@@ -141,21 +149,25 @@ public class KonfirmasiPemesananActivity extends AppCompatActivity {
         btnProsesPemesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new AlertDialog.Builder(KonfirmasiPemesananActivity.this)
-                        .setTitle("Proses Pemesanan!")
-                        .setMessage("Lanjutkan proses pemesanan!")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                createDataPemesanan();
-                            }
-                        })
-                        .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        }).show();
+                if (editText.getText().toString().isEmpty()) {
+                    Toast.makeText(KonfirmasiPemesananActivity.this, "Pilih tanggal terlebih dahulu!", Toast.LENGTH_SHORT).show();
+                } else {
+                    new AlertDialog.Builder(KonfirmasiPemesananActivity.this)
+                            .setTitle("Proses Pemesanan!")
+                            .setMessage("Lanjutkan proses pemesanan!")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    createDataPemesanan();
+                                }
+                            })
+                            .setNegativeButton("Batal", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            }).show();
+                }
             }
         });
 
@@ -170,7 +182,7 @@ public class KonfirmasiPemesananActivity extends AppCompatActivity {
 
     private void createDataPemesanan(){
         MethodHTTP ardData = RetroServer.konekRetrofit().create(MethodHTTP.class);
-        Call<ResponseModel> simpandata = ardData.ardCreateDataPemesanan(emailUser, namaLengkap, Integer.parseInt(id_paket), judul, gambar_satu, tanggal_pemesanan, selectedMetode, statusPemesanan);
+        Call<ResponseModel> simpandata = ardData.ardCreateDataPemesanan(emailUser, varNamaLengkap, Integer.parseInt(id_paket), judul, gambar_satu, tanggal_pemesanan, selectedMetode, statusPemesanan);
 
         simpandata.enqueue(new Callback<ResponseModel>() {
             @Override
@@ -187,6 +199,30 @@ public class KonfirmasiPemesananActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ResponseModel> call, Throwable t) {
                 Toast.makeText(KonfirmasiPemesananActivity.this, "Gagal Menghubungi Server" + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getSpesifikUser() {
+        MethodHTTP methodHTTP = RetroServer.konekRetrofit().create(MethodHTTP.class);
+        Call<ResponseUser> ambilData = methodHTTP.ambilSpesifikUser(emailUser);
+
+        ambilData.enqueue(new Callback<ResponseUser>() {
+            @Override
+            public void onResponse(Call<ResponseUser> call, Response<ResponseUser> response) {
+                int kode = response.body().getKode();
+                String pesan = response.body().getPesan();
+                Toast.makeText(KonfirmasiPemesananActivity.this, "Kode : " + kode+"| Pesan : " + pesan, Toast.LENGTH_SHORT).show();
+                listUser = response.body().getData();
+
+                varNamaLengkap = listUser.get(0).getNama_lengkap();
+                txtNamaLengkap.setText(varNamaLengkap);
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseUser> call, Throwable t) {
+                Toast.makeText(KonfirmasiPemesananActivity.this, "gagal Menghubungi Server", Toast.LENGTH_SHORT).show();
             }
         });
     }
